@@ -1,55 +1,81 @@
 describe('test this: ', () => {
-    it('constructor function', () => {
-        function Person() {
-            this.name = 'Brad';
+    it('this in arrow function refers to context', function() {
+        function all() {
+            const a = 10;
+            this.a = 11;
+            expect(this.a).toBe(11);
         }
-        const ss = new Person();
-        expect(ss.name).toBe('Brad');
-        expect(typeof ss).toBe('object');
+        all();
     });
 
-    it('constructor function without new', () => {
-        function Person() {
-            this.name = 'Brad';
+    it('this.a is different from a', function() {
+        function all() {
+            const b = 10;
+            expect(this.b).toBeUndefined();
         }
-        const ss = Person();
-        expect(ss).toBeUndefined();
+        all();
     });
 
-    it('date object', () => {
-        const ss = new Date('10-3-1999');
-        expect(typeof ss).toBe('object');
-        expect(ss.getYear()).toBe(99);
-        expect(ss.getMonth()).toBe(9);
-        expect(ss.getDate()).toBe(3)
+    it('this.a is different from a in functions', function() {
+        const c = 10;
+        function all() {
+            expect(this.c).toBeUndefined();
+        }
+        all();
     });
 
-    it('typeof new number', () => {
-        const a = 10;
-        const b = new Number(12);
-        expect(typeof a).toBe('number')
-        expect(typeof b).toBe('object')
+    it('this.a is different from a in lambdas too', function() {
+        const d = 10;
+        const all =  () => {
+            expect(this.d).toBeUndefined();
+        }
+        all();
     });
 
-    
-    it('typeof new boolean', () => {
-        const a = true;
-        const b = new Boolean(false);
-        expect(typeof a).toBe('boolean')
-        expect(typeof b).toBe('object')
+    it('this.e refers to where lambda originated', function() {
+        this.e = 10;
+        const all =  () => {
+            expect(this.e).toBe(10);
+        }
+        all();
     });
 
-    it('typeof function', () => {
-        const a = (() => {return 10})();
-        const b = () => {return 0}
-        expect(a).toBe(10)
-        expect(typeof b).toBe('function')
+    it('this cant refer to prototype. It will not change when you change context', function() {
+        this.f = 11;
+        const s = {
+            f: 10,
+            all: () => {
+                expect(this.f).toBe(11);
+            }
+        }
+        
+        function m(a) {
+            this.f = 12;
+            a.all();
+        }
+
+        m(s);
     });
 
-    it('array type and object', () => {
-        const a = [1, 2, 3];
-        const b = new Array(2, 9, 3, 6);
-        expect(typeof a).toBe('object')
-        expect(typeof b).toBe('object')
+    it('this in lambda in argument list refers to the context of function call', () => {
+        this.g = 11;
+        function lambdaCaller(l) {
+            this.g = 10;
+            l();
+        }
+
+        lambdaCaller(() => {
+            expect(this.g).toBe(11);
+        });
     });
-});
+
+    it('function in prototype', () => {
+        const s = {
+            h: 10,
+            all: function() {
+                expect(this.h).toBe(10);
+            }
+        }
+        s.all();
+    });
+})
