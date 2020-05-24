@@ -37,4 +37,33 @@ describe('prototype test: ', () => {
         expect(m.b).toBe(2);
         expect(m.q).toEqual({});
     });
+    
+    it('setPrototypeOf an object', () => {
+        const a = {x: 12};
+        const b = {y: 10};
+        Object.setPrototypeOf(b, a);
+        expect(b.x).toBe(12);
+        expect(b.y).toBe(10);
+    });
+
+    it('assign test', () => {
+        const a = {x: 12};
+        const b = {x: 10};
+        const c = Object.assign(a, b);
+        expect(a.x).toBe(10);
+        expect(b.x).toBe(10);
+        expect(c.x).toBe(10);
+    });
+
+    it('make symbol', () => {
+        s = Symbol();
+        expect(typeof s).toBe('symbol');
+    });
+
+    it('cant use new with symbol', () => {
+        const f = () => {
+            const d = new Symbol();
+        }
+        expect(f).toThrow()
+    });
 });

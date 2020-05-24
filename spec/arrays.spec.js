@@ -81,4 +81,47 @@ describe('test array functions', () => {
         expect(typeof found).toBe('string');
         expect(found).toBe('hojjat');
     });
+    
+        it('array From string', () => {
+        const str = '012345';
+        const obj = {bias: 1};
+        const arr = Array.from(str, function (val) {
+            return parseInt(val) + this.bias;
+        } , obj);
+        expect(arr).toEqual([1, 2, 3, 4, 5, 6]);
+    });
+    
+    it('array of', () => {
+        const arr1 = Array.of(2);
+        const arr2 = Array(2);
+        const arr3 = Array.of(2);
+        const arr4 = new Array(2);
+        expect(arr1.length).toBe(1);
+        expect(arr2.length).toBe(2);
+        expect(Array.isArray(arr1)).toBeTrue();
+        expect(Array.isArray(arr2)).toBeTrue();
+        expect(Array.isArray(arr3)).toBeTrue();
+        expect(Array.isArray(arr4)).toBeTrue();
+    });
+
+    it('arrays search and return element', () => {
+        const arr = [10, 23, 45, 32, 83, 95, 13];
+        const found = arr.find((x) => x === 45);
+        expect(found).toBe(45);
+    });
+
+    it('array entries', () => {
+        const arr = [10, 23, 45, 32, 83, 95, 13];
+        expect(arr.entries().next().value[1]).toBe(10);
+    });
+
+    it('array keys', () => {
+        const arr = [10, 23, 45, 32, 83, 95, 13];
+        expect(arr.keys().next().value).toBe(0);
+    });
+
+    it('array values', () => {
+        const arr = [10, 23, 45, 32, 83, 95, 13];
+        expect(arr.values().next().value).toBe(10);
+    });
 });
