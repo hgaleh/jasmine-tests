@@ -1,4 +1,14 @@
 describe('test this: ', () => {
+    beforeEach(() => {
+        this.a = undefined;
+        this.b = undefined;
+        this.c = undefined;
+        this.d = undefined;
+        this.e = undefined;
+        this.f = undefined;
+        this.g = undefined;
+        this.h = undefined;
+    });
     it('this in arrow function refers to context', function() {
         function all() {
             const a = 10;
@@ -8,23 +18,8 @@ describe('test this: ', () => {
         all();
     });
 
-    it('this.a is different from a', function() {
-        function all() {
-            const b = 10;
-            expect(this.b).toBeUndefined();
-        }
-        all();
-    });
-
-    it('this.a is different from a in functions', function() {
-        const c = 10;
-        function all() {
-            expect(this.c).toBeUndefined();
-        }
-        all();
-    });
-
     it('this.a is different from a in lambdas too', function() {
+        this.d = undefined;
         const d = 10;
         const all =  () => {
             expect(this.d).toBeUndefined();
@@ -33,6 +28,7 @@ describe('test this: ', () => {
     });
 
     it('this.e refers to where lambda originated', function() {
+        this.e = undefined;
         this.e = 10;
         const all =  () => {
             expect(this.e).toBe(10);
@@ -41,6 +37,7 @@ describe('test this: ', () => {
     });
 
     it('this cant refer to prototype. It will not change when you change context', function() {
+        this.f = undefined;
         this.f = 11;
         const s = {
             f: 10,
@@ -58,6 +55,7 @@ describe('test this: ', () => {
     });
 
     it('this in lambda in argument list refers to the context of function call', () => {
+        this.g = undefined;
         this.g = 11;
         function lambdaCaller(l) {
             this.g = 10;
