@@ -31,3 +31,14 @@
  
 
 // DOM
+
+const math = {
+    sum(a, b) {
+        return a + b;
+    },
+    sub(a, b) {
+       return a-b; 
+    }
+}
+
+exports.math = math;

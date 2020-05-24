@@ -66,4 +66,31 @@ describe('prototype test: ', () => {
         }
         expect(f).toThrow()
     });
+
+    it('dual property in prototype and body', () => {
+        const a = {
+            __proto__: {
+                name: 'Hojjat'
+            },
+            name: 'Ali'
+        };
+
+        expect(a.name).toBe('Ali');
+    });
+
+    it('add method to object', function() {
+        const a = {
+            name: 'ali'
+        };
+        const b = {
+            getName: function() {
+                return this.name;
+            }
+        };
+        const c = {
+            ...a, 
+            ...b
+        };
+        expect(c.getName()).toBe('ali');
+    });
 });

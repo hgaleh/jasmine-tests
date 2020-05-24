@@ -30,4 +30,21 @@ describe('proxy: ', () => {
         expect(proxy.age).toBe(12)
         expect(proxy.name).toBe('Not found');
     });
+
+    it('proxy set trap', () => {
+        const target = {
+            age: 12
+        };
+        spyOn(target, "age")
+        const proxy = new Proxy(
+            target,
+            {
+                set: function(target, property, value, receiver){
+                    target[property] = value;
+                    return true;
+                }
+            }
+        );
+        
+    });
 });
