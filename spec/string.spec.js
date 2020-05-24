@@ -47,4 +47,14 @@ describe('test strings', () => {
     it('include', () => {
         expect("Hojjat is Programmer".includes("is")).toBeTruthy();
     });
+
+    it('persian string length', () => {
+        const s = 'سلام';
+        expect(s.length).toBe(4);
+    });
+
+    it('charat persian', () => {
+        const s = 'سلام';
+        expect(s.charAt(1)).toBe('ل');
+    });
 });
