@@ -57,4 +57,9 @@ describe('test strings', () => {
         const s = 'سلام';
         expect(s.charAt(1)).toBe('ل');
     });
+
+    it('chinese char', () => {
+        let text = '𠮷';
+        expect(text.length).toBe(2);
+    });
 });

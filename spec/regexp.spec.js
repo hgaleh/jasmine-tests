@@ -42,11 +42,11 @@ describe('regexpt test: ', () => {
         expect(reg.test('ddddd')).toBeFalse();
     });
 
-    it('+', () => {
-        reg = /[*+]/
+    it('*', () => {
+        reg = /\*[q]/
         expect(reg.test('...ddddd')).toBeFalse();
         expect(reg.test('##ddddd')).toBeFalse();
-        expect(reg.test('...**dddd')).toBeTrue();
+        expect(reg.test('...**dddd')).toBeFalse();
         expect(reg.test('ddddd')).toBeFalse();
     });
 });

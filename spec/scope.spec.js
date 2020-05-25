@@ -55,4 +55,24 @@ describe('Scopes test', () => {
             return 10;
         }
     });
+
+    it('const in for', () => {
+        for (let i=0; i< 3; i++) {
+            const f = i;
+            expect(f).toBe(i);
+        }
+    });
+
+    it('function in loop', () => {
+        let fs = [];
+        let res = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+        for(let i=0; i<10; i++) {
+            fs.push(() => {
+                return i;
+            });
+        }
+        fs.forEach((x, i) => {
+            expect(x()).toBe(res[i]);
+        });
+    });
 });
