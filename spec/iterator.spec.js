@@ -182,7 +182,7 @@ describe('iterator: ', () => {
         const obj2 = {
             __name__: "John"
         };
-        Reflect.set(obj1, "name", "Eden", obj2);
+        Reflect.set(obj, "name", "Eden", obj2);
         expect(obj.name).toBe('Eden');
         const name = Reflect.get(obj, 'name', {__name__: 'Ali'});
         expect(name).toBe('Ali');

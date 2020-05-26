@@ -36,4 +36,49 @@ describe('prototypes: ', () => {
         const u = new User();
         expect(u.hasOwnProperty('getHojjat')).toBeFalsy();
     });
+
+    it('change prototype', () => {
+        const person = {
+            getGreeting() {
+                return 'hello';
+            }
+        };
+
+        const dog = {
+            getGreeting() {
+                return 'Woof';
+            }
+        }
+        const friend = Object.create(person);
+        expect(friend.getGreeting()).toBe('hello');
+        expect(Object.getPrototypeOf(friend)).toBe(person);
+        Object.setPrototypeOf(friend, dog);
+        expect(friend.getGreeting()).toBe('Woof');
+        expect(Object.getPrototypeOf(friend)).toBe(dog);
+    });
+
+    it('use super and override it', () => {
+        const person = {
+            getGreeting() {
+                return 'hello';
+            }
+        };
+
+        const dog = {
+            getGreeting() {
+                return 'Woof';
+            }
+        }
+
+        const friend = {
+            getGreeting() {
+                return super.getGreeting() + ' Hi!';
+            }
+        }
+
+        Object.setPrototypeOf(friend, person);
+        expect(friend.getGreeting()).toBe('hello Hi!');
+        Object.setPrototypeOf(friend, dog);
+        expect(friend.getGreeting()).toBe('Woof Hi!');
+    });
 });
