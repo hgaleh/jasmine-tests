@@ -156,4 +156,41 @@ describe('symbol', () => {
         };
         expect(t[0]).toBe('Mehdi')
     });
+
+    it('match', () => {
+        const hasLengthOf10 = {
+            [Symbol.match]: function(value) {
+                return value.length === 10 ? [value.substring(0, 10)] : null;
+            }
+        }
+        expect('H1H2H3H4H5H6H7H8'.match(hasLengthOf10)).toBeNull();
+        expect('H1H2H3H4H5'.match(hasLengthOf10)).toEqual(['H1H2H3H4H5']);
+    });
+
+    it('replace', () => {
+        const hasLengthOf10 = {
+            [Symbol.replace]: function(value, replacement) {
+                return value.length >= 10 ? replacement + value.substring(10): value;
+            }
+        }
+        expect('H1H2H3H4H5H6H7H8'.replace(hasLengthOf10, '_')).toBe('_H6H7H8');
+    });
+
+    it('search', () => {
+        const hasLengthOf10 = {
+            [Symbol.search]: function(value) {
+                return value.length >= 10 ? 0 : -1;
+            }
+        }
+        expect('H1H2H3H4H5H6H7H8'.search(hasLengthOf10)).toBe(0);
+    });
+
+    it('split', () => {
+        const hasLengthOf10 = {
+            [Symbol.split]: function(value) {
+                return value.length >= 10 ? [value.substring(0, 10), value.substring(10)] : [value];
+            }
+        }
+        expect('H1H2H3H4H5H6H7H8'.split(hasLengthOf10)).toEqual(['H1H2H3H4H5', 'H6H7H8']);
+    });
 });
