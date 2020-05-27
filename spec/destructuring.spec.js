@@ -93,4 +93,30 @@ describe('destructuring test: ', () => {
         expect(colors).not.toBe(clonnedColors);
         expect(colors).toEqual(clonnedColors);
     });
+
+    it('destructured parameter', () => {
+        function setCookie(name, value, {secure, path, domain, expires}) {
+            expect(secure).toBeTrue();
+            expect(expires).toBe(60000)
+        }
+        setCookie('type', 'js', {
+            secure: true,
+            expires: 60000
+        });
+    });
+
+    it('destructured parameter is required', () => {
+        function setCookie(name, value, {secure, path, domain, expires}) {}
+        const j = () => setCookie('type', 'js');
+        expect(j).toThrow();
+    });
+
+    it('default value for destructured params', () => {
+        function setCookie(name, value, {secure=true, path, domain, expires}={}) {
+            return secure;
+        }
+        expect(() => setCookie('', '')).not.toThrow();
+        expect(setCookie('', '')).toBeTrue();
+        expect(setCookie('', '', {secure: false})).toBeFalse();
+    });
 });

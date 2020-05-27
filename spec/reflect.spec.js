@@ -181,4 +181,13 @@ describe('reflect test: ', function() {
         const keys = Reflect.ownKeys(hhh);
         expect(keys.length).toBe(2);
     });
+
+    it('is it own property whe use defineProperty?', () => {
+        const d = {};
+        Reflect.defineProperty(d, 'name', {
+            value: 10
+        });
+
+        expect(Object.getOwnPropertyNames(d).includes('name')).toBeTrue();
+    });
 });
