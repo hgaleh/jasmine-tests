@@ -22,4 +22,12 @@ describe('symbol', () => {
 
         expect(s[Symbol.for('sym1')]).toBe(10);
     });
+
+    it('toString', () => {
+        class Person {}
+        const m = new Person();
+        expect(m.toString()).toBe('[object Object]')
+        Person.prototype[Symbol.toStringTag] = 'Person';
+        expect(m.toString()).toBe('[object Person]')
+    });
 });
