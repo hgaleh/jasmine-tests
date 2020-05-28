@@ -187,4 +187,50 @@ describe('iterator: ', () => {
         const name = Reflect.get(obj, 'name', {__name__: 'Ali'});
         expect(name).toBe('Ali');
     });
+
+    it('generator function', () => {
+        function *generator() {
+            yield 1;
+            yield 2;
+            yield 3;
+        }
+        const f = generator();
+        expect(f.next().value).toBe(1)
+        expect(f.next().value).toBe(2)
+        expect(f.next().value).toBe(3)
+    });
+
+    it('generator with specified length', () => {
+        function *withLen(len) {
+            for (let i = 0; i < len; i++) {
+                yield i;
+            }
+        }
+        const gen = withLen(10);
+        const arr = Array.from(gen);
+        expect(arr.length).toBe(10);
+        expect(arr[5]).toBe(5);
+    });
+
+    // it('syntax error yield wrong place', () => {
+    //     const y = () => {
+    //         function *createIterator(items) {
+    //             items.forEach(function(item) {
+    //                 // syntax error
+    //                 yield item + 1;
+    //             });
+    //         }
+    //     }
+    //     expect(y).toThrow();
+    // });
+
+    it('generator in func expressions', () => {
+        const f = function *(len) {
+            yield 1;
+            yield 2;
+        }
+        const y = f(2);
+        expect(y.next().value).toBe(1);
+        expect(y.next().value).toBe(2);
+    });
 });
