@@ -124,4 +124,27 @@ describe('test array functions', () => {
         const arr = [10, 23, 45, 32, 83, 95, 13];
         expect(arr.values().next().value).toBe(10);
     });
+
+    it('array of', () => {
+        const arr = Array.of(1, 10, 100, 1000);
+        expect(arr).toEqual([1, 10, 100, 1000]);
+    });
+
+    it('array from iterables', () => {
+        const itr = {
+            *[Symbol.iterator]() {
+                yield 1;
+                yield 2;
+                yield 3;
+            }
+        }
+        const arr = Array.from(itr);
+        expect(arr).toEqual([1, 2, 3]);
+    });
+
+    it('array fill', () => {
+        const arr = [1, 3, 4, 5];
+        arr.fill(5);
+        expect(arr).toEqual([5, 5, 5, 5])
+    });
 });

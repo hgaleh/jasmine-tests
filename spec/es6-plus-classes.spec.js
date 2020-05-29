@@ -270,4 +270,12 @@ describe('ES6+ classes: ', () => {
         M = 10;
         expect(M).toBe(10);
     });
+
+    it('static members in es5', () => {
+        function M() {}
+        M.stat = function() {
+            return 'stat';
+        }
+        expect(M.stat()).toBe('stat');
+    });
 });
