@@ -178,4 +178,96 @@ describe('ES6+ classes: ', () => {
         expect(obj1.name()).toBe('obj1');
         expect(obj2.name()).toBe('obj1');
     });
+
+    it('class prototype is readonly', () => {
+        class Me {}
+        class You {}
+        expect(Me.prototype).not.toBe(You.prototype);
+        Object.setPrototypeOf(Me, Object.getPrototypeOf(You));
+        expect(Me.prototype).not.toBe(You.prototype);
+    });
+
+    it('add new method to class prototype', () => {
+        class Me {}
+        Me.prototype.show = function() {
+            return 'shows';
+        }
+        expect(new Me().show()).toBe('shows');
+    });
+
+    it('methods of class are not enumerable', () => {
+        class Me {
+            prop = '';
+        }
+        const hasProp = Object.getOwnPropertyNames(new Me()).includes('prop');
+        expect(hasProp).toBeTrue();
+    });
+
+    it('to create own property use this. in constructor', () => {
+        class Me {
+            constructor() {
+                this.prop = '';
+            }
+        }
+        const hasProp = Object.getOwnPropertyNames(new Me()).includes('prop');
+        expect(hasProp).toBeTrue();
+    });
+
+    it('defineProperty creates own properties', () => {
+        class Me {}
+        const c = new Me();
+        Object.defineProperty(c, 'show', {
+            value: true,
+            writable: false,
+            enumerable: true,
+            configurable: true
+        });
+        const hasOwnShow = Object.getOwnPropertyNames(c).includes('show');
+        expect(hasOwnShow).toBeTrue();
+    });
+
+    it('classes should be called with new', () => {
+        class Me {}
+        const y = () => Me();
+        expect(y).toThrow();
+    });
+
+    it('private property in class', () => {
+        const ClassA = (function () {
+            privParam = 'ss';
+            function ClassA() {}
+            Object.defineProperty(ClassA.prototype, 'param', {
+                set: function(val) {
+                    privParam = val;
+                },
+                get: function() {
+                    return privParam;
+                },
+                enumerable: false,
+                configurable: false
+            });
+            return ClassA;
+        })();
+        const cl = new ClassA();
+        expect(cl.param).toBe('ss');
+    });
+
+    it('class name is constant from inside', () => {
+        class M {
+            constructor() {
+                M = 10;
+            }
+        }
+        const R = () => new M();
+        expect(R).toThrow();
+    });
+
+    it('class name can be changed from outside', () => {
+        class M {
+            constructor() {
+            }
+        }
+        M = 10;
+        expect(M).toBe(10);
+    });
 });
