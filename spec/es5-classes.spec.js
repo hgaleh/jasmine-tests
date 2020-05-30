@@ -7,8 +7,8 @@ Person.prototype.greet = function() {
     return `welcome ${this.name} ${this.lastName}!`;
 };
 
-describe('ES5 classes: ', () => {
-    it('inherited object should have father properties', () => {
+describe('ES5 classes: ', function()  {
+    it('inherited object should have father properties', function()  {
         function Customer(firstName, lastName, customerId) {
             Person.call(this, firstName, lastName);
             this.customerId = customerId;
@@ -26,7 +26,7 @@ describe('ES5 classes: ', () => {
         expect(cus.greet()).toBe('welcome Hojjat Bakhtiyari!');
     });
 
-    it('create new object from current object only prototype', () => {
+    it('create new object from current object only prototype', function()  {
         const newObject = Object.create({
             greeting: () => {
                 return `Hello ${this.firstName} ${this.lastName}!`
@@ -39,7 +39,7 @@ describe('ES5 classes: ', () => {
         expect(newObject.hasOwnProperty('greeting')).toBeFalse();
     });
 
-    it('another use of Object.create body and prototype', () => {
+    it('another use of Object.create body and prototype', function()  {
         const newObject = Object.create(
             {
                 greeting: () => {

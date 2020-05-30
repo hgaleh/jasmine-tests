@@ -1,5 +1,5 @@
-describe('generator function', () => {
-    it('make generator function', () => {
+describe('generator function', function()  {
+    it('make generator function', function()  {
         function* generator_function() {
             yield 1;
             yield 2;
@@ -16,7 +16,7 @@ describe('generator function', () => {
         expect(gf.next().done).toBeTrue();
     });
 
-    it('for-of loop', () => {
+    it('for-of loop', function()  {
         function* generator_function() {
             yield 1;
             yield 2;
@@ -31,7 +31,7 @@ describe('generator function', () => {
         }
     });
 
-    it('generator function', () => {
+    it('generator function', function()  {
         function *generator() {
             yield 1;
             yield 2;
@@ -43,7 +43,7 @@ describe('generator function', () => {
         expect(f.next().value).toBe(3)
     });
 
-    it('generator with specified length', () => {
+    it('generator with specified length', function()  {
         function *withLen(len) {
             for (let i = 0; i < len; i++) {
                 yield i;
@@ -55,7 +55,7 @@ describe('generator function', () => {
         expect(arr[5]).toBe(5);
     });
 
-    // it('syntax error yield wrong place', () => {
+    // it('syntax error yield wrong place', function()  {
     //     const y = () => {
     //         function *createIterator(items) {
     //             items.forEach(function(item) {
@@ -67,7 +67,7 @@ describe('generator function', () => {
     //     expect(y).toThrow();
     // });
 
-    it('generator in func expressions', () => {
+    it('generator in func expressions', function()  {
         const f = function *(len) {
             yield 1;
             yield 2;
@@ -77,7 +77,7 @@ describe('generator function', () => {
         expect(y.next().value).toBe(2);
     });
 
-    it('generator method in ec6', () => {
+    it('generator method in ec6', function()  {
         class MyClass {
             *gener() {
                 yield 1;
@@ -89,7 +89,7 @@ describe('generator function', () => {
         expect(y.next().value).toBe(2);
     });
 
-    it('array iterator', () => {
+    it('array iterator', function()  {
         const arr = [10, 20, 30];
         const iter = arr[Symbol.iterator]();
         expect(iter.next().value).toBe(10);
@@ -97,7 +97,7 @@ describe('generator function', () => {
         expect(iter.next().value).toBe(30);
     });
 
-    it('create iterables', () => {
+    it('create iterables', function()  {
         class MyIterable {
             arr = [];
             add(el) {
@@ -116,7 +116,7 @@ describe('generator function', () => {
         }
     });
 
-    it('entries array', () => {
+    it('entries array', function()  {
         const arr = [10, 20, 30];
         for (const e of arr.entries()) {
             if(e[0] === 0) {
@@ -129,7 +129,7 @@ describe('generator function', () => {
         }
     });
 
-    it('entries sets', () => {
+    it('entries sets', function()  {
         const st = new Set([10, 20, 30]);
         for (const e of st.entries()) {
             if(e[0] === 10) {
@@ -142,7 +142,7 @@ describe('generator function', () => {
         }
     });
 
-    it('entries maps', () => {
+    it('entries maps', function()  {
         const mp = new Map([
             ['name', 'ali'],
             ['lastName', 'bakhtiyari'],
@@ -159,7 +159,7 @@ describe('generator function', () => {
         }
     });
 
-    it('generator with argument in next', () => {
+    it('generator with argument in next', function()  {
         function *gen() {
             let first = yield 1;
             yield first + 2;
@@ -169,7 +169,7 @@ describe('generator function', () => {
         expect(f.next(2).value).toBe(4);
     });
 
-    it('generator with argument in next with error', () => {
+    it('generator with argument in next with error', function()  {
         function *gen() {
             let first;
             try {
@@ -184,7 +184,7 @@ describe('generator function', () => {
         expect(f.throw(new Error()).value).toBe(14);
     });
 
-    it('done before last yield', () => {
+    it('done before last yield', function()  {
         function *gen() {
             yield 1;
             return 'oka';
@@ -198,7 +198,7 @@ describe('generator function', () => {
         expect(f.next().value).toBeUndefined();
     });
 
-    it('calling generators inside generators', () => {
+    it('calling generators inside generators', function()  {
         function *gen1() {
             yield 1;
             yield 2;
@@ -214,7 +214,7 @@ describe('generator function', () => {
         expect(y.next().value).toBe('ali');
     });
 
-    it('return value of a generator', () => {
+    it('return value of a generator', function()  {
         function *gen1() {
             yield 1;
             yield 2;

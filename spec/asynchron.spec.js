@@ -1,4 +1,4 @@
-describe('async programming: ', () => {
+describe('async programming: ', function()  {
     it('timeout', (done) => {
         let g;
         setTimeout(() => {
@@ -18,7 +18,7 @@ describe('async programming: ', () => {
         expect(val).toBeTrue();
     });
 
-    // it('await only valid in async', () => {
+    // it('await only valid in async', function()  {
     //     const y = () => {
     //         const timePromise = new Promise((res) => {
     //             setTimeout(() => {
@@ -76,7 +76,7 @@ describe('async programming: ', () => {
         });
     });
 
-    it('chain promises', () => {
+    it('chain promises', function()  {
         const promise = Promise.resolve(425);
         promise.then((val) => {
             expect(val).toBe(425);

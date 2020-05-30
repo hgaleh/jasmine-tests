@@ -33,7 +33,7 @@ describe('reflect test: ', function() {
         expect(name).toBe('Hojjat');
     });
 
-    it('reflect set', () => {
+    it('reflect set', function()  {
         var obj1 = {
             __name__: "Alll"
         };
@@ -66,7 +66,7 @@ describe('reflect test: ', function() {
         expect(propertyDescriptor.writable).toBeTrue();
     });
 
-    it('cant change unconfigurable properties', () => {
+    it('cant change unconfigurable properties', function()  {
         const a = {_name: 'Ali'};
         Reflect.defineProperty(a, '_name', {
             configurable: false
@@ -80,7 +80,7 @@ describe('reflect test: ', function() {
         expect(isWritable).toBeFalse();
     });
 
-    it('cant change unwritable values', () => {
+    it('cant change unwritable values', function()  {
         const a = {_name: 'Ali'};
         Reflect.defineProperty(a, '_name', {
             writable: false
@@ -89,7 +89,7 @@ describe('reflect test: ', function() {
         expect(a._name).toBe('Ali');
     });
 
-    it('set prototype', () => {
+    it('set prototype', function()  {
         var obj = {};
         Reflect.setPrototypeOf(obj, {
             name: "Eden"
@@ -97,7 +97,7 @@ describe('reflect test: ', function() {
         expect(obj.name).toBe('Eden');
     });
     
-    it('check exist property', () => {
+    it('check exist property', function()  {
         var obj = {
             __proto__: {
                 married: false
@@ -109,7 +109,7 @@ describe('reflect test: ', function() {
         expect(Reflect.has(obj, 'married')).toBeTrue();
     });
 
-    it('is extensible', () => {
+    it('is extensible', function()  {
         var obj = {
             __proto__: {
                 married: false
@@ -119,7 +119,7 @@ describe('reflect test: ', function() {
         expect(Reflect.isExtensible(obj)).toBeTrue();
     });
 
-    it('if inextensible, cant add property', () => {
+    it('if inextensible, cant add property', function()  {
         var obj = {
             __proto__: {
                 married: false
@@ -132,7 +132,7 @@ describe('reflect test: ', function() {
         expect(obj.sss).toBeUndefined();
     });
 
-    it('if sealed, cant add property', () => {
+    it('if sealed, cant add property', function()  {
         var hhh = {
             __proto__: {
                 married: false
@@ -145,7 +145,7 @@ describe('reflect test: ', function() {
         expect(hhh.sss).toBeUndefined();
     });
 
-    it('if frozen, cant add property', () => {
+    it('if frozen, cant add property', function()  {
         var hhh = {
             __proto__: {
                 married: false
@@ -158,7 +158,7 @@ describe('reflect test: ', function() {
         expect(hhh.sss).toBeUndefined();
     });
 
-    it('own keys', () => {
+    it('own keys', function()  {
         var hhh = {
             __proto__: {
                 married: false
@@ -169,7 +169,7 @@ describe('reflect test: ', function() {
         expect(keys.length).toBe(1);
     });
 
-    it('own keys with symbols', () => {
+    it('own keys with symbols', function()  {
         const sym = Symbol();
         var hhh = {
             __proto__: {
@@ -182,7 +182,7 @@ describe('reflect test: ', function() {
         expect(keys.length).toBe(2);
     });
 
-    it('is it own property whe use defineProperty?', () => {
+    it('is it own property whe use defineProperty?', function()  {
         const d = {};
         Reflect.defineProperty(d, 'name', {
             value: 10

@@ -1,5 +1,5 @@
-describe('test array functions', () => {
-    it('create object', () => {
+describe('test array functions', function()  {
+    it('create object', function()  {
         const obj = {
             firstName: 'Hojjat'
         };
@@ -7,7 +7,7 @@ describe('test array functions', () => {
         expect(obj['firstName']).toBe('Hojjat')
     });
 
-    it('date object', () => {
+    it('date object', function()  {
         const dt = new Date('9-10-1981 11:25:29');
         expect(dt.getYear()).toBe(81);
         expect(dt.getHours()).toBe(11);
@@ -15,7 +15,7 @@ describe('test array functions', () => {
         expect(dt.getSeconds()).toBe(29);
     });
 
-    it('date object', () => {
+    it('date object', function()  {
         expect().toBe();
     });
 });

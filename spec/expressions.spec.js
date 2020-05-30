@@ -11,29 +11,29 @@ function getLastName(name) {
 
 
 
-describe('expressions test', () => {
-    it('select case', () => {
+describe('expressions test', function()  {
+    it('select case', function()  {
         expect(getLastName('hojjat')).toBe('Bakhtiyari');
         expect(getLastName('ali')).toBe('Mostafavi');
         expect(getLastName('ali2')).toBe('None');
     });
 
-    it('immediately callable function', () => {
+    it('immediately callable function', function()  {
         expect((() => 'Hojjat')()).toBe('Hojjat');
     });
 
-    it('immediately callable with parameter', () => {
+    it('immediately callable with parameter', function()  {
         expect((() => getLastName('hojjat'))()).toBe('Bakhtiyari');
     });
 
-    it('functions in object', () => {
+    it('functions in object', function()  {
         const objectExample = {
             callable: getLastName
         }
         expect(objectExample.callable('hojjat')).toBe('Bakhtiyari');
     });
 
-    it('extract ids from object', () => {
+    it('extract ids from object', function()  {
         const users = [
             {id: 3, name: 'John'},
             {id: 2, name: 'Sara'},
@@ -49,7 +49,7 @@ describe('expressions test', () => {
         ])
     });
 
-    it('sum of values in object', () => {
+    it('sum of values in object', function () {
         const obj = {
             fst: 2,
             scd: 1,

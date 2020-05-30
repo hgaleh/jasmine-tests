@@ -1,5 +1,5 @@
-describe('symbol', () => {
-    it('getOwnPropertySymbols', () => {
+describe('symbol', function()  {
+    it('getOwnPropertySymbols', function()  {
         const sym1 = Symbol();
         const sym2 = Symbol();
         const s = {
@@ -13,7 +13,7 @@ describe('symbol', () => {
         expect(symbols.length).toBe(2);
     });
 
-    it('create symbol with description', () => {
+    it('create symbol with description', function()  {
         const sym1 = Symbol.for('sym1');
         const s = {
             [sym1]: 10,
@@ -23,7 +23,7 @@ describe('symbol', () => {
         expect(s[Symbol.for('sym1')]).toBe(10);
     });
 
-    it('toString', () => {
+    it('toString', function()  {
         class Person {}
         const m = new Person();
         expect(m.toString()).toBe('[object Object]')
@@ -31,24 +31,24 @@ describe('symbol', () => {
         expect(m.toString()).toBe('[object Person]')
     });
     
-    it('defie symbol', () => {
+    it('defie symbol', function()  {
         const d = Symbol();
         expect(typeof d).toBe('symbol');
     });
 
-    it('cant coerce into strings', () => {
+    it('cant coerce into strings', function()  {
         const s = Symbol();
         const d = () => s + '';
         expect(d).toThrow();
     });
 
-    it('cant coerce into integer', () => {
+    it('cant coerce into integer', function()  {
         const s = Symbol();
         const d = () => s + 0;
         expect(d).toThrow();
     });
 
-    it('Object.keys return all enumerable properties', () => {
+    it('Object.keys return all enumerable properties', function()  {
         const s = Symbol();
         const d = {
             __proto__: {c: 13},
@@ -60,7 +60,7 @@ describe('symbol', () => {
         expect(Object.keys(d)).toEqual(['b']);
     });
 
-    it('Object.getOwnPropertyNames return all own properties', () => {
+    it('Object.getOwnPropertyNames return all own properties', function()  {
         const s = Symbol();
         const d = {
             __proto__: {c: 13},
@@ -72,7 +72,7 @@ describe('symbol', () => {
         expect(Object.getOwnPropertyNames(d)).toEqual(['a', 'b']);
     });
 
-    it('Object.getOwnPropertySymbols return all own symbols', () => {
+    it('Object.getOwnPropertySymbols return all own symbols', function()  {
         const s = Symbol();
         const d = {
             __proto__: {c: 13},
@@ -85,7 +85,7 @@ describe('symbol', () => {
         expect(Object.getOwnPropertySymbols(d)).toEqual([s]);
     });
 
-    it('instanceof override', () => {
+    it('instanceof override', function()  {
         function F(name) {
             this.name = name;
         }
@@ -99,7 +99,7 @@ describe('symbol', () => {
         expect(d).not.toBeInstanceOf(F);
     });
 
-    it('non-object can call instance of', () => {
+    it('non-object can call instance of', function()  {
         function F(name) {
             this.name = name;
         }
@@ -112,7 +112,7 @@ describe('symbol', () => {
         expect(d).toBeInstanceOf(F);
     });
 
-    it('inConcatSpreadable', () => {
+    it('inConcatSpreadable', function()  {
         const collection = {
             0: 'Hello',
             1: 'world',
@@ -123,7 +123,7 @@ describe('symbol', () => {
         expect(msg).toEqual(['Hi', 'Hello', 'world']);
     });
 
-    it('inConcatSpreadable without length', () => {
+    it('inConcatSpreadable without length', function()  {
         const collection = {
             0: 'Hello',
             1: 'world',
@@ -133,7 +133,7 @@ describe('symbol', () => {
         expect(msg).toEqual(['Hi']);
     });
 
-    it('inConcatSpreadable with length 1', () => {
+    it('inConcatSpreadable with length 1', function()  {
         const collection = {
             0: 'Hello',
             1: 'world',
@@ -144,7 +144,7 @@ describe('symbol', () => {
         expect(msg).toEqual(['Hi', 'Hello']);
     });
 
-    it('inConcatSpreadable with undefined properties', () => {
+    it('inConcatSpreadable with undefined properties', function()  {
         const collection = {
             2: 'Hello',
             1: 'world',
@@ -156,7 +156,7 @@ describe('symbol', () => {
         expect(msg).toEqual(['Hi', undefined, 'world']);
     });
 
-    it('object with same name property', () => {
+    it('object with same name property', function()  {
         const t = {
             0: 'Ali',
             0: 'Hojjat',
@@ -165,7 +165,7 @@ describe('symbol', () => {
         expect(t[0]).toBe('Mehdi')
     });
 
-    it('match', () => {
+    it('match', function()  {
         const hasLengthOf10 = {
             [Symbol.match]: function(value) {
                 return value.length === 10 ? [value.substring(0, 10)] : null;
@@ -175,7 +175,7 @@ describe('symbol', () => {
         expect('H1H2H3H4H5'.match(hasLengthOf10)).toEqual(['H1H2H3H4H5']);
     });
 
-    it('replace', () => {
+    it('replace', function()  {
         const hasLengthOf10 = {
             [Symbol.replace]: function(value, replacement) {
                 return value.length >= 10 ? replacement + value.substring(10): value;
@@ -184,7 +184,7 @@ describe('symbol', () => {
         expect('H1H2H3H4H5H6H7H8'.replace(hasLengthOf10, '_')).toBe('_H6H7H8');
     });
 
-    it('search', () => {
+    it('search', function()  {
         const hasLengthOf10 = {
             [Symbol.search]: function(value) {
                 return value.length >= 10 ? 0 : -1;
@@ -193,7 +193,7 @@ describe('symbol', () => {
         expect('H1H2H3H4H5H6H7H8'.search(hasLengthOf10)).toBe(0);
     });
 
-    it('split', () => {
+    it('split', function()  {
         const hasLengthOf10 = {
             [Symbol.split]: function(value) {
                 return value.length >= 10 ? [value.substring(0, 10), value.substring(10)] : [value];

@@ -1,47 +1,47 @@
-describe('functions test: ', () => {
-    it('default argument = undefined', () => {
+describe('functions test: ', function()  {
+    it('default argument = undefined', function()  {
         function f(a = 1) {
             expect(a).toBe(1);
         }
         f(undefined);
     });
 
-    it('default argument = null', () => {
+    it('default argument = null', function()  {
         function f(a = 1) {
             expect(a).toBe(null);
         }
         f(null);
     });
 
-    it('default argument = 0', () => {
+    it('default argument = 0', function()  {
         function f(a = 1) {
             expect(a).toBe(0);
         }
         f(0);
     });
 
-    it('arguments object', () => {
+    it('arguments object', function()  {
         function f(a = 1) {
             expect(arguments[0]).toBe(0);
         }
         f(0);
     });
 
-    it('arguments object extra parameter', () => {
+    it('arguments object extra parameter', function()  {
         function f(a = 1) {
             expect(arguments[1]).toBeUndefined();
         }
         f(0);
     });
 
-    it('arguments object real extra parameter', () => {
+    it('arguments object real extra parameter', function()  {
         function f(a = 1) {
             expect(arguments[1]).toBe(2);
         }
         f(0, 2);
     });
 
-    it('change argument variables in function', () => {
+    it('change argument variables in function', function()  {
         function f(a = 1) {
             a = 2;
             expect(arguments[0]).toBe(0);
@@ -50,7 +50,7 @@ describe('functions test: ', () => {
         f(0);
     });
 
-    it('default argument is expression', () => {
+    it('default argument is expression', function()  {
         let c = 0;
         function f(a = c++) {
             return a;
@@ -61,7 +61,7 @@ describe('functions test: ', () => {
         expect(f()).toBe(3);
     });
 
-    it('previous parameter as default argument', () => {
+    it('previous parameter as default argument', function()  {
         function f(a, b=a) {
             expect(a).toBe(10);
             expect(b).toBe(10);
@@ -70,7 +70,7 @@ describe('functions test: ', () => {
         f(10);
     });
 
-    it('previous parameter as default argument and exist local variable', () => {
+    it('previous parameter as default argument and exist local variable', function()  {
         const a = 1;
         function f(a, b=a) {
             expect(a).toBe(10);
@@ -80,24 +80,24 @@ describe('functions test: ', () => {
         f(10);
     });
 
-    it('first parameter default can\'t depend on second', () => {
+    it('first parameter default can\'t depend on second', function()  {
         function f(a = b, b) {
         }
 
         expect(() => f(undefined, 1)).toThrow();
     });
 
-    it('function create', () => {
+    it('function create', function()  {
         const add = new Function("a", "b", "return a+b");
         expect(add(1, 2)).toBe(3);
     });
 
-    it('math apply max', () => {
+    it('math apply max', function()  {
         const arr = [1, 2, 3, 4, 5];
         expect(Math.max.apply(null, arr)).toBe(5);
     });
 
-    it('func name', () => {
+    it('func name', function()  {
         function ssss() {
 
         }
@@ -108,12 +108,12 @@ describe('functions test: ', () => {
         expect(r.name).toBe('r');
     });
 
-    it('anonymous func name', () => {
+    it('anonymous func name', function()  {
         const nam = (new Function()).name;
         expect(nam).toBe('anonymous');
     });
 
-    it('should use new with function', () => {
+    it('should use new with function', function()  {
         function f(n) {
             if(this instanceof f) {
                 this.n = n;
@@ -126,7 +126,7 @@ describe('functions test: ', () => {
         expect(() => f.call(new f(''), 'Hojjat')).not.toThrow();
     });
 
-    it('use new.target to distinguish new or call', () => {
+    it('use new.target to distinguish new or call', function()  {
         function f(n) {
             if(typeof new.target !== 'undefined') {
                 this.n = n;
@@ -140,7 +140,7 @@ describe('functions test: ', () => {
         expect(() => f.call(new f(''), 'Hojjat')).toThrow();
     });
 
-    it('functions in block', () => {
+    it('functions in block', function()  {
         const d = () => {
             {
                 function f() {}
@@ -150,7 +150,7 @@ describe('functions test: ', () => {
         expect(d).toThrow();
     });
 
-    it('let functions aren\'t hoisted', () => {
+    it('let functions aren\'t hoisted', function()  {
         {
             let f;
             expect(f).toBeUndefined();
@@ -159,13 +159,13 @@ describe('functions test: ', () => {
         }
     });
 
-    it('arrow func cant be called new', () => {
+    it('arrow func cant be called new', function()  {
         const g = () => {};
         const f = () => new g();
         expect(f).toThrow();
     });
 
-    it('no prototype for arrow func', () => {
+    it('no prototype for arrow func', function()  {
         const g = () => {};
         expect(g.prototype).toBeUndefined();
     });
@@ -184,7 +184,7 @@ describe('functions test: ', () => {
         expect(Object.is(obj1, obj1)).toBeTrue();
     });
 
-    it('object assign', () => {
+    it('object assign', function()  {
         const src = {
             get name() {
                 return 'Hojjat';

@@ -1,5 +1,5 @@
-describe('proxy: ', () => {
-    it('proxy wraps object', () => {
+describe('proxy: ', function()  {
+    it('proxy wraps object', function () {
         const obj = {
             name: 'Hojjat'
         };
@@ -11,7 +11,7 @@ describe('proxy: ', () => {
         expect(obj.lastName).toBe('BKH');
     });
 
-    it('proxy handler', () => {
+    it('proxy handler', function () {
         const proxy = new Proxy(
             {
                 age: 12
@@ -31,7 +31,7 @@ describe('proxy: ', () => {
         expect(proxy.name).toBe('Not found');
     });
 
-    it('proxy set trap', () => {
+    it('proxy set trap', function()  {
         const target = {
             age: 12
         };
@@ -48,14 +48,14 @@ describe('proxy: ', () => {
         
     });
 
-    it('array length', () => {
+    it('array length', function()  {
         const arr = [10, 20, 30, 40];
         expect(arr.length).toBe(4);
         arr.length = 2;
         expect(arr).toEqual([10, 20]);
     });
 
-    it('simple proxy', () => {
+    it('simple proxy', function()  {
         const target = {
             name: 'Ali'
         };
@@ -67,7 +67,7 @@ describe('proxy: ', () => {
         expect(proxy.name).toBe('Mohammad');
     });
 
-    it('set trap', () => {
+    it('set trap', function()  {
         const target = {
             phoneNumber: 0
         };
@@ -88,7 +88,7 @@ describe('proxy: ', () => {
         expect(wrongOperation).toThrow(new TypeError('only numbers'));
     });
 
-    it('dont add new properties to own properties', () => {
+    it('dont add new properties to own properties', function()  {
         class PropertyError extends Error {}
         const target = {
             phoneNumber: undefined,
@@ -111,7 +111,7 @@ describe('proxy: ', () => {
         expect(wrongExpression).toThrow(new PropertyError('Invalid property name'));
     });
 
-    it('in object', () => {
+    it('in object', function()  {
         const obj = {};
         const sym = Symbol();
         Object.defineProperty(obj, 'name', {
@@ -158,7 +158,7 @@ describe('proxy: ', () => {
         expect(Object.keys(obj)).toEqual(['name', 'lastName'])
     });
 
-    it('all of enumerable and inherited properties are "in" object', () => {
+    it('all of enumerable and inherited properties are "in" object', function()  {
         const obj = {};
         Object.defineProperty(obj.__proto__, 'name', {
             value: 'Ali',
@@ -169,7 +169,7 @@ describe('proxy: ', () => {
         expect('name' in obj).toBeTrue()
     });
 
-    it('hide property existance by "has"', () => {
+    it('hide property existance by "has"', function()  {
         const target = {
             value: 12,
             name: 10

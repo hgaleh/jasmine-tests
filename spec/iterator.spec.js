@@ -1,5 +1,5 @@
-describe('iterator: ', () => {
-    it('iterator how works', () => {
+describe('iterator: ', function()  {
+    it('iterator how works', function()  {
         const obj = {
             array: [1, 2, 3, 4, 5],
             nextIndex: 0,
@@ -18,7 +18,7 @@ describe('iterator: ', () => {
         expect(obj.next().done).toBe(true);
     });
 
-    it('how to implement iterable', () => {
+    it('how to implement iterable', function()  {
         const obj = {
             array: [1, 2, 3, 4, 5],
             nextIndex: 0,
@@ -36,7 +36,7 @@ describe('iterator: ', () => {
         }
     });
 
-    it('function apply', () => {
+    it('function apply', function()  {
         function b() {
             return this.a;
         }
@@ -53,7 +53,7 @@ describe('iterator: ', () => {
         expect(b.apply(obj2)).toBe(11);
     });
 
-    it('function reflect apply', () => {
+    it('function reflect apply', function()  {
         function b() {
             return this.a;
         }
@@ -70,7 +70,7 @@ describe('iterator: ', () => {
         expect(Reflect.apply(b, obj2, [])).toBe(11);
     });
 
-    it('construct reflect', () => {
+    it('construct reflect', function()  {
         function con1(a) {
             this.a = a;
         }
@@ -83,7 +83,7 @@ describe('iterator: ', () => {
         expect(a.b()).toBe(10)
     });
 
-    it('define property', () => {
+    it('define property', function()  {
         a = {};
         Reflect.defineProperty(a, "name", {
             value: "Eden",
@@ -94,7 +94,7 @@ describe('iterator: ', () => {
         expect(a.name).toBe('Eden');
     });
 
-    it('define setter and getter', () => {
+    it('define setter and getter', function()  {
         a = {};
         Reflect.defineProperty(a, '_name', {
             value: undefined,
@@ -116,7 +116,7 @@ describe('iterator: ', () => {
         expect(a.name).toBe('ali');
     });
 
-    it('delete property with reflector', () => {
+    it('delete property with reflector', function()  {
         a = {};
         Reflect.defineProperty(a, '_name', {
             value: undefined,
@@ -128,7 +128,7 @@ describe('iterator: ', () => {
         expect(res).toBeTrue();
     });
 
-    it('delete property with reflector cant delete config false', () => {
+    it('delete property with reflector cant delete config false', function()  {
         a = {};
         Reflect.defineProperty(a, '_name', {
             value: undefined,
@@ -140,7 +140,7 @@ describe('iterator: ', () => {
         expect(res).toBeFalse();
     });
 
-    // it('return enumerable of properties', () => {
+    // it('return enumerable of properties', function()  {
     //     a = {};
     //     Reflect.defineProperty(a, '_name', {
     //         value: undefined,
@@ -152,7 +152,7 @@ describe('iterator: ', () => {
     //     expect(enums.next().value).toBe('_name');
     // });
 
-    it('get property of Reflect', () => {
+    it('get property of Reflect', function()  {
         const obj = {
             __name__: 'Eden'
         };
@@ -166,7 +166,7 @@ describe('iterator: ', () => {
         expect(name).toBe('Ali');
     });
 
-    it('set property of Reflect', () => {
+    it('set property of Reflect', function()  {
         const obj = {
             __name__: 'Eden'
         };

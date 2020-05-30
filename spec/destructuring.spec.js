@@ -1,5 +1,5 @@
-describe('destructuring test: ', () => {
-    it('assign object to variables', () => {
+describe('destructuring test: ', function()  {
+    it('assign object to variables', function()  {
         const node = {
             type: 'Identifier',
             name: 'foo'
@@ -9,7 +9,7 @@ describe('destructuring test: ', () => {
         expect(name).toBe('foo');
     });
 
-    it('destructure with default value', () => {
+    it('destructure with default value', function()  {
         const node = {
             type: 'Identifier',
             name: 'foo'
@@ -18,7 +18,7 @@ describe('destructuring test: ', () => {
         expect(val).toBeTrue();
     });
 
-    it('nested object destructuring', () => {
+    it('nested object destructuring', function()  {
         const node = {
             type: 'identifier',
             name: 'foo',
@@ -38,7 +38,7 @@ describe('destructuring test: ', () => {
         expect(start.column).toBe(1);
     });
 
-    it('different destination var name', () => {
+    it('different destination var name', function()  {
         const node = {
             type: 'identifier',
             name: 'foo',
@@ -57,7 +57,7 @@ describe('destructuring test: ', () => {
         expect(localStartLine).toBe(1);
     });
 
-    it('swap vars by array destructuring', () => {
+    it('swap vars by array destructuring', function()  {
         let a = 1, b = 2;
         expect(a).toBe(1);
         expect(b).toBe(2);
@@ -66,35 +66,35 @@ describe('destructuring test: ', () => {
         expect(b).toBe(1);
     });
 
-    it('assign first element to variable and the rest to an array', () => {
+    it('assign first element to variable and the rest to an array', function()  {
         const colors = ['red', 'green', 'blue'];
         const [fst, ...rest] = colors;
         expect(fst).toBe('red');
         expect(rest).toEqual(['green', 'blue']);
     });
 
-    it('clone array', () => {
+    it('clone array', function()  {
         const colors = ['red', 'green', 'blue'];
         const clonnedColors = colors.concat();
         expect(colors).not.toBe(clonnedColors);
         expect(colors).toEqual(clonnedColors);
     });
 
-    it('concating to arrays', () => {
+    it('concating to arrays', function()  {
         const colors = ['red', 'green', 'blue'];
         const additionalColors = ['purpole', 'brown'];
         const allColors = colors.concat(additionalColors);
         expect(allColors).toEqual( ['red', 'green', 'blue', 'purpole', 'brown']);
     });
 
-    it('use destructuring to clone array', () => {
+    it('use destructuring to clone array', function()  {
         const colors = ['red', 'green', 'blue'];
         const [...clonnedColors] = colors;
         expect(colors).not.toBe(clonnedColors);
         expect(colors).toEqual(clonnedColors);
     });
 
-    it('destructured parameter', () => {
+    it('destructured parameter', function()  {
         function setCookie(name, value, {secure, path, domain, expires}) {
             expect(secure).toBeTrue();
             expect(expires).toBe(60000)
@@ -105,13 +105,13 @@ describe('destructuring test: ', () => {
         });
     });
 
-    it('destructured parameter is required', () => {
+    it('destructured parameter is required', function()  {
         function setCookie(name, value, {secure, path, domain, expires}) {}
         const j = () => setCookie('type', 'js');
         expect(j).toThrow();
     });
 
-    it('default value for destructured params', () => {
+    it('default value for destructured params', function()  {
         function setCookie(name, value, {secure=true, path, domain, expires}={}) {
             return secure;
         }

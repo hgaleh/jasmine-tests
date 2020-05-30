@@ -1,11 +1,11 @@
-describe('regexpt test: ', () => {
-    it('one char', () => {
+describe('regexpt test: ', function()  {
+    it('one char', function()  {
         const reg = /[a]/;
         expect(reg.test('a')).toBeTrue();       
         expect(reg.test('c')).toBeFalse();       
     });
 
-    it('not char', () => {
+    it('not char', function()  {
         const reg = /[^a]/;
         expect(reg.test('a')).toBeFalse();
         expect(reg.test('ahmad')).toBeTrue();
@@ -13,20 +13,20 @@ describe('regexpt test: ', () => {
         expect(reg.test('mmoj')).toBeTrue();
     });
 
-    it('from0-9', () => {
+    it('from0-9', function()  {
         reg = /[0-9]/;
         expect(reg.test('as')).toBeFalse();
         expect(reg.test('0')).toBeTrue();
     });
 
-    it('az', () => {
+    it('az', function()  {
         reg = /[a-z]/;
         expect(reg.test('ALIa')).toBeTrue();
         expect(reg.test('ALI')).toBeFalse();
         expect(reg.test('19999999222e')).toBeTrue();
     });
 
-    it('aZ', () => {
+    it('aZ', function()  {
         reg = /[a-zA-Z]/;
         expect(reg.test('ALIa')).toBeTrue();
         expect(reg.test('ALI')).toBeTrue();
@@ -34,7 +34,7 @@ describe('regexpt test: ', () => {
         expect(reg.test('11111')).toBeFalse();
     });
 
-    it('start', () => {
+    it('start', function()  {
         reg = /[*#.]/
         expect(reg.test('...ddddd')).toBeTrue();
         expect(reg.test('##ddddd')).toBeTrue();
@@ -42,7 +42,7 @@ describe('regexpt test: ', () => {
         expect(reg.test('ddddd')).toBeFalse();
     });
 
-    it('*', () => {
+    it('*', function()  {
         reg = /\*[q]/
         expect(reg.test('...ddddd')).toBeFalse();
         expect(reg.test('##ddddd')).toBeFalse();

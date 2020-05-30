@@ -1,11 +1,11 @@
-describe('prototype test: ', () => {
-    it('define in __proto__', () => {
+describe('prototype test: ', function()  {
+    it('define in __proto__', function()  {
         const a = {a: 12, __proto__: {b: 13}};
         expect(a.a).toBe(12);
         expect(a.b).toBe(13);
     });
 
-    it('set prototype of object', () => {
+    it('set prototype of object', function()  {
         x = {a: 10};
         y = {b: 15};
         Object.setPrototypeOf(x, y);
@@ -13,7 +13,7 @@ describe('prototype test: ', () => {
         expect(x.b).toBe(15);
     });
 
-    it('object assign', () => {
+    it('object assign', function()  {
         x = {c: 11, __proto__:  {a: 10}};
         y = {b: 15};
         Object.assign(y, x);
@@ -22,7 +22,7 @@ describe('prototype test: ', () => {
         expect(y.c).toBe(11);
     });
 
-    it('object assign 2', () => {
+    it('object assign 2', function()  {
         let x = {x: 12};
         let y = {y: 13, __proto__: x};
         let z = {z: 14, get b() {return 2;}, q: {}};
@@ -38,7 +38,7 @@ describe('prototype test: ', () => {
         expect(m.q).toEqual({});
     });
     
-    it('setPrototypeOf an object', () => {
+    it('setPrototypeOf an object', function()  {
         const a = {x: 12};
         const b = {y: 10};
         Object.setPrototypeOf(b, a);
@@ -46,7 +46,7 @@ describe('prototype test: ', () => {
         expect(b.y).toBe(10);
     });
 
-    it('assign test', () => {
+    it('assign test', function()  {
         const a = {x: 12};
         const b = {x: 10};
         const c = Object.assign(a, b);
@@ -55,19 +55,19 @@ describe('prototype test: ', () => {
         expect(c.x).toBe(10);
     });
 
-    it('make symbol', () => {
+    it('make symbol', function()  {
         s = Symbol();
         expect(typeof s).toBe('symbol');
     });
 
-    it('cant use new with symbol', () => {
+    it('cant use new with symbol', function()  {
         const f = () => {
             const d = new Symbol();
         }
         expect(f).toThrow()
     });
 
-    it('dual property in prototype and body', () => {
+    it('dual property in prototype and body', function()  {
         const a = {
             __proto__: {
                 name: 'Hojjat'

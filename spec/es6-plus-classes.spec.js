@@ -1,6 +1,6 @@
 
-describe('ES6+ classes: ', () => {
-    it('class in es6', () => {
+describe('ES6+ classes: ', function()  {
+    it('class in es6', function()  {
         class Person {
             constructor(firstName, lastName) {
                 this.firstName = firstName;
@@ -11,7 +11,7 @@ describe('ES6+ classes: ', () => {
         expect(p.hasOwnProperty('firstName')).toBeTrue();
     });
 
-    it('class with method', () => {
+    it('class with method', function()  {
         class Person {
             constructor(firstName, lastName) {
                 this.firstName = firstName;
@@ -28,7 +28,7 @@ describe('ES6+ classes: ', () => {
         expect(Person.prototype.hasOwnProperty('greet')).toBeTrue();
     });
 
-    it('static method in class', () => {
+    it('static method in class', function()  {
         class Person {
             static plus(a, b) {
                 return a + b;
@@ -37,7 +37,7 @@ describe('ES6+ classes: ', () => {
         expect(Person.plus(1, 5)).toBe(6);
     });
 
-    it('customer inherits from person', () => {
+    it('customer inherits from person', function()  {
         class Person {
             constructor(firstName, lastName) {
                 this.firstName = firstName;
@@ -75,7 +75,7 @@ describe('ES6+ classes: ', () => {
         expect(obj.print()).toBe('Hojjat');
     });
 
-    it('primitive types object', () => {
+    it('primitive types object', function()  {
         const obj = new String('Ali');
         const str = String('Ali');
         expect(obj == str).toBeTrue();
@@ -84,19 +84,19 @@ describe('ES6+ classes: ', () => {
         expect(obj).toEqual(str);
     });
 
-    // xit('cant new Symbol', () => {
+    // xit('cant new Symbol', function()  {
     //     expect(new Symbol()).toThrow();
     // });
 
-    // xit('cant new Null', () => {
+    // xit('cant new Null', function()  {
     //     expect(new Null).toThrow();
     // });
 
-    // xit('cant new undefined', () => {
+    // xit('cant new undefined', function()  {
     //     expect(new undefined).toThrow();
     // });
 
-    it('class methods are values', () => {
+    it('class methods are values', function()  {
         class MyClass {
             constructor() {
                 this.a = 1;
@@ -111,7 +111,7 @@ describe('ES6+ classes: ', () => {
         expect(descriptor.enumerable).toBeFalse();
     });
 
-    // it('class is hoisted', () => {
+    // it('class is hoisted', function()  {
     //     expect(new MyClass()).toThrow();
     //     class MyClass {
     //         constructor() {
@@ -124,7 +124,7 @@ describe('ES6+ classes: ', () => {
     //     }
     // });
 
-    it('species', () => {
+    it('species', function()  {
         class myCustomArray1 extends Array {
             static get [Symbol.species]() {
                 return Array;
@@ -149,7 +149,7 @@ describe('ES6+ classes: ', () => {
         expect(arr2).toBeInstanceOf(Array);
     });
 
-    it('new.target', () => {
+    it('new.target', function()  {
         class Parent {
             constructor() {
                 expect(new.target.name).toBe('Child');
@@ -165,7 +165,7 @@ describe('ES6+ classes: ', () => {
         const c = new Child();
     });
 
-    it('use super', () => {
+    it('use super', function()  {
         const obj1 = {
             name() { return 'obj1'; }
         }
@@ -179,7 +179,7 @@ describe('ES6+ classes: ', () => {
         expect(obj2.name()).toBe('obj1');
     });
 
-    it('class prototype is readonly', () => {
+    it('class prototype is readonly', function()  {
         class Me {}
         class You {}
         expect(Me.prototype).not.toBe(You.prototype);
@@ -187,7 +187,7 @@ describe('ES6+ classes: ', () => {
         expect(Me.prototype).not.toBe(You.prototype);
     });
 
-    it('add new method to class prototype', () => {
+    it('add new method to class prototype', function()  {
         class Me {}
         Me.prototype.show = function() {
             return 'shows';
@@ -195,7 +195,7 @@ describe('ES6+ classes: ', () => {
         expect(new Me().show()).toBe('shows');
     });
 
-    it('methods of class are not enumerable', () => {
+    it('methods of class are not enumerable', function()  {
         class Me {
             prop = '';
         }
@@ -203,7 +203,7 @@ describe('ES6+ classes: ', () => {
         expect(hasProp).toBeTrue();
     });
 
-    it('to create own property use this. in constructor', () => {
+    it('to create own property use this. in constructor', function()  {
         class Me {
             constructor() {
                 this.prop = '';
@@ -213,7 +213,7 @@ describe('ES6+ classes: ', () => {
         expect(hasProp).toBeTrue();
     });
 
-    it('defineProperty creates own properties', () => {
+    it('defineProperty creates own properties', function()  {
         class Me {}
         const c = new Me();
         Object.defineProperty(c, 'show', {
@@ -226,13 +226,13 @@ describe('ES6+ classes: ', () => {
         expect(hasOwnShow).toBeTrue();
     });
 
-    it('classes should be called with new', () => {
+    it('classes should be called with new', function()  {
         class Me {}
         const y = () => Me();
         expect(y).toThrow();
     });
 
-    it('private property in class', () => {
+    it('private property in class', function()  {
         const ClassA = (function () {
             privParam = 'ss';
             function ClassA() {}
@@ -252,7 +252,7 @@ describe('ES6+ classes: ', () => {
         expect(cl.param).toBe('ss');
     });
 
-    it('class name is constant from inside', () => {
+    it('class name is constant from inside', function()  {
         class M {
             constructor() {
                 M = 10;
@@ -262,7 +262,7 @@ describe('ES6+ classes: ', () => {
         expect(R).toThrow();
     });
 
-    it('class name can be changed from outside', () => {
+    it('class name can be changed from outside', function()  {
         class M {
             constructor() {
             }
@@ -271,7 +271,7 @@ describe('ES6+ classes: ', () => {
         expect(M).toBe(10);
     });
 
-    it('static members in es5', () => {
+    it('static members in es5', function()  {
         function M() {}
         M.stat = function() {
             return 'stat';

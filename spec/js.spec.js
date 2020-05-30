@@ -1,5 +1,5 @@
-describe('spread function: ', () => {
-    it('spread into variables', () => {
+describe('spread function: ', function()  {
+    it('spread into variables', function()  {
         const s = {
             name: 10,
             lname: 11,
@@ -11,7 +11,7 @@ describe('spread function: ', () => {
         expect(c).toBe(12);
     });
 
-    it('merge arrays', () => {
+    it('merge arrays', function()  {
         const a = [1, 3, 5];
         const b = [2, 4, 6];
         const c = [...a, ...b];
@@ -19,7 +19,7 @@ describe('spread function: ', () => {
         expect(c[2]).toBe(5);
     });
 
-    it('push an array elements to another', () => {
+    it('push an array elements to another', function()  {
         const a = [1, 3, 5];
         const b = [2, 4, 6];
         b.push(...a);
@@ -27,7 +27,7 @@ describe('spread function: ', () => {
         expect(b[2]).toBe(6);
     });
 
-    it('rest parameter', () => {
+    it('rest parameter', function()  {
         function testRest(a, b, ...restOfParams) {
             return restOfParams[0];
         }
@@ -36,7 +36,7 @@ describe('spread function: ', () => {
         expect(a).toBe(4);
     });
 
-    it('get array elements in one line', () => {
+    it('get array elements in one line', function()  {
         const arr = [2, 5, 3, 1, 9];
         [a, b, c] = arr;
         expect(a).toBe(2);
@@ -44,14 +44,14 @@ describe('spread function: ', () => {
         expect(c).toBe(3);
     });
 
-    it('get first and third array elements in one line', () => {
+    it('get first and third array elements in one line', function()  {
         const arr = [2, 5, 3, 1, 9];
         [a, , c] = arr;
         expect(a).toBe(2);
         expect(c).toBe(3);
     });
 
-    it('get first element in a variable and rest in an array', () => {
+    it('get first element in a variable and rest in an array', function()  {
         const arr = [2, 5, 3, 1, 9];
         [a, , ...c] = arr;
         expect(a).toBe(2);
@@ -59,42 +59,42 @@ describe('spread function: ', () => {
         expect(c).toEqual([3, 1, 9])
     });
 
-    it('default value for spread operation', () => {
+    it('default value for spread operation', function()  {
         const arr = [2, 5];
         [, a, c = 24] = arr;
         expect(a).toBe(5);
         expect(c).toEqual(24)
     });
 
-    it('not default value for spread operation', () => {
+    it('not default value for spread operation', function()  {
         const arr = [2, 5];
         [a, c = 24] = arr;
         expect(a).toBe(2);
         expect(c).toEqual(5)
     });
 
-    it('destructing object', () => {
+    it('destructing object', function()  {
         const ali = {name: 'ali', lastName: 'Daneshvar'};
         const {name, lasName} = ali; //varnames should correspond to object keys
         expect(name).toBe('ali');
         expect(lasName).toBeUndefined();
     });
 
-    it('default value in object destruction', () => {
+    it('default value in object destruction', function()  {
         let {a, b, c = 3} = {a: "1", b: "2"};
         expect(a).toBe('1');
         expect(b).toBe('2');
         expect(c).toBe(3);
     });
 
-    it('computer key in object destruction', () => {
+    it('computer key in object destruction', function()  {
         const ali = {name: 'ali', lastName: 'Daneshvar'};
         const {name, ["last" + "Name"]: lasName} = ali; //varnames should correspond to object keys
         expect(name).toBe('ali');
         expect(lasName).toBe("Daneshvar");
     });
 
-    it('property name same as variable name', () => {
+    it('property name same as variable name', function()  {
         const a = 10;
         const b = 20;
         const c = {a, b};
@@ -102,7 +102,7 @@ describe('spread function: ', () => {
         expect(c.b).toBe(20);
     });
 
-    it('this in function', () => {
+    it('this in function', function()  {
         const obj = {
             fn: function () {
                 objMem = 11;

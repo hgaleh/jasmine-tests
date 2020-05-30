@@ -1,5 +1,5 @@
-describe('Name of the group', () => {
-    it('object flaws', () => {
+describe('Name of the group', function()  {
+    it('object flaws', function()  {
         const key1 = {};
         const key2 = {};
         const v = {
@@ -10,7 +10,7 @@ describe('Name of the group', () => {
         expect(v[key1]).toBe('mobi');
     });
 
-    it('objects update key values', () => {
+    it('objects update key values', function()  {
         const key1 = {};
         const v = {};
         v[key1] = 1;
@@ -18,7 +18,7 @@ describe('Name of the group', () => {
         expect(v[key1]).toBe(2);
     });
 
-    it('set with multiple unique keys', () => {
+    it('set with multiple unique keys', function()  {
         const key1 = {};
         const key2 = {};
         let v = new Set();
@@ -27,7 +27,7 @@ describe('Name of the group', () => {
         expect(v.size).toBe(2);
     });
 
-    it('set add same key twice', () => {
+    it('set add same key twice', function()  {
         const key1 = {};
         let v = new Set();
         v.add(key1);
@@ -35,7 +35,7 @@ describe('Name of the group', () => {
         expect(v.size).toBe(1);
     });
 
-    it('check existance of key', () => {
+    it('check existance of key', function()  {
         const key1 = {};
         const key2 = {};
         let v = new Set();
@@ -44,7 +44,7 @@ describe('Name of the group', () => {
         expect(v.has(key2)).toBeFalse();
     });
 
-    it('remove key from set', () => {
+    it('remove key from set', function()  {
         const key1 = {};
         let v = new Set();
         v.add(key1);
@@ -53,7 +53,7 @@ describe('Name of the group', () => {
         expect(v.has(key1)).toBeFalse();
     });
 
-    it('convert set to array', () => {
+    it('convert set to array', function()  {
         const key1 = {};
         const key2 = {};
         let v = new Set();
@@ -64,13 +64,13 @@ describe('Name of the group', () => {
         expect(arr[1]).toBe(key2);
     });
 
-    it('convert array to set', () => {
+    it('convert array to set', function()  {
         const arr = [1, 2, 3, 3];
         const v = new Set(arr);
         expect(v.size).toBe(3);
     });
 
-    it('strong sets will keep the reference', () => {
+    it('strong sets will keep the reference', function()  {
         const set = new Set();
         let key = {};
         set.add(key);
@@ -82,7 +82,7 @@ describe('Name of the group', () => {
         expect(key).toEqual({});
     });
 
-    it('map', () => {
+    it('map', function()  {
         const m = new Map();
         const key1 = {};
         const key2 = {};
@@ -94,7 +94,7 @@ describe('Name of the group', () => {
         expect(m.get(key2)).toBe('Gholi');
     });
 
-    it('map clear', () => {
+    it('map clear', function()  {
         const m = new Map();
         const key1 = {};
         const key2 = {};
@@ -105,7 +105,7 @@ describe('Name of the group', () => {
         expect(m.size).toBe(0);
     });
 
-    it('map foreach', () => {
+    it('map foreach', function()  {
         const m = new Map();
         const key1 = {};
         m.set(key1, 'ali');
@@ -116,7 +116,7 @@ describe('Name of the group', () => {
         });
     });
 
-    it('weak maps', () => {
+    it('weak maps', function()  {
         const wm = new WeakMap();
         const f = () => {
             wm.set('nam', 'ali');
@@ -124,14 +124,14 @@ describe('Name of the group', () => {
         expect(f).toThrow();
     });
 
-    it('weak maps', () => {
+    it('weak maps', function()  {
         const wm = new WeakMap();
         const key1 = {};
         wm.set(key1, 'ali');
         expect(wm.get(key1)).toBe('ali');
     });
 
-    it('weak maps init with array', () => {
+    it('weak maps init with array', function()  {
         const key1 = {};
         const key2 = {};
         const wm = new WeakMap([
@@ -142,7 +142,7 @@ describe('Name of the group', () => {
         expect(wm.get(key2)).toBe('mohammad');
     });
 
-    it('private variable', () => {
+    it('private variable', function()  {
         function getNewObject() {
             let i = 0;
             return {
@@ -158,7 +158,7 @@ describe('Name of the group', () => {
         expect(d.next()).toBe(3);
     });
 
-    it('private var by class', () => {
+    it('private var by class', function()  {
         class NewObject {
             i = 0;
             next() {

@@ -1,4 +1,4 @@
-describe('test this: ', () => {
+describe('test this: ', function()  {
     beforeEach(() => {
         this.a = undefined;
         this.b = undefined;
@@ -54,7 +54,7 @@ describe('test this: ', () => {
         m(s);
     });
 
-    it('this in lambda in argument list refers to the context of function call', () => {
+    it('this in lambda in argument list refers to the context of function call', function()  {
         this.g = undefined;
         this.g = 11;
         function lambdaCaller(l) {
@@ -67,7 +67,7 @@ describe('test this: ', () => {
         });
     });
 
-    it('function in prototype', () => {
+    it('function in prototype', function()  {
         const s = {
             h: 10,
             all: function() {
