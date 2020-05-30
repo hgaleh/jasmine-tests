@@ -188,4 +188,41 @@ describe('proxy: ', function()  {
         expect('name' in proxy).toBeTrue();
         expect(proxy.value).toBe(12);
     });
+
+    it('prevent property deletion', () => {
+        let target = {
+            name: '',
+            value: 0
+        };
+        Object.defineProperty(target, 'name', {
+            configurable: false
+        });
+        expect('value' in target).toBeTrue();
+        let result = delete target.value;
+        expect(result).toBeTrue();
+        expect('value' in target).toBeFalse();
+        let result2 = delete target.name;
+        expect(result2).toBeFalse();
+        expect('name' in target).toBeTrue();
+    });
+
+    it('change delete behaviour', () => {
+        let target = {
+            name: '',
+            value: 0
+        };
+        const proxy = new Proxy(target, {
+            deleteProperty(targ, prop) {
+                if (prop === 'name') {
+                    return false;
+                } else {
+                    return Reflect.deleteProperty(targ, prop);
+                }
+            }
+        });
+        expect(delete target.name).toBeFalse();
+        expect('name' in target).toBeTrue();
+        expect(delete target.value).toBeTrue();
+        expect('value' in target).toBeFalse();
+    });
 });
