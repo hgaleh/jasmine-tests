@@ -1,4 +1,5 @@
-const math = require('../app').math;
+// const math = require('../app').math;
+import {math} from '../app';
 
 describe('module math test: ', function()  {
     it('sum', function()  {
