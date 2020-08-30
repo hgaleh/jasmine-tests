@@ -206,7 +206,7 @@ describe('proxy: ', function()  {
         expect('name' in target).toBeTrue();
     });
 
-    it('change delete behaviour', () => {
+    xit('change delete behaviour', () => {
         let target = {
             name: '',
             value: 0
