@@ -2,5 +2,8 @@
   "devDependencies": {
     "jasmine": "^3.5.0"
   },
+  "scripts": {
+    "test": "jasmine"
+  },
   "main": "app.js"
 }
