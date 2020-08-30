@@ -32,7 +32,7 @@
 
 // DOM
 
-const math = {
+export const math = {
     sum(a, b) {
         return a + b;
     },
@@ -41,4 +41,5 @@ const math = {
     }
 }
 
-exports.math = math;
+export {math};
+// exports.math = math;
