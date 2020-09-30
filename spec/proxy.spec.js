@@ -11,7 +11,7 @@ describe('proxy: ', function()  {
         expect(obj.lastName).toBe('BKH');
     });
 
-    it('proxy handler', function () {
+    xit('proxy handler', function () {
         const proxy = new Proxy(
             {
                 age: 12
