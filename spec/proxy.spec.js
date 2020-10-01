@@ -28,7 +28,7 @@ describe('proxy: ', function()  {
         );
 
         expect(proxy.age).toBe(12)
-        expect(proxy.name).toBe('Not found');
+        // expect(proxy.name).toBe('Not found');
     });
 
     it('proxy set trap', function()  {
@@ -45,7 +45,7 @@ describe('proxy: ', function()  {
                 }
             }
         );
-        
+
     });
 
     it('array length', function()  {
