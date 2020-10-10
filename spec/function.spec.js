@@ -201,4 +201,165 @@ describe('functions test: ', function()  {
         expect(descriptor.enumerable).toBeTrue();
         expect(descriptor.configurable).toBeTrue();
     });
+
+    it('inheritance object', () => {
+        function Parent() {
+            this.val = '';
+        }
+
+        class Child extends Parent { }
+        const child = new Child();
+        const descriptor = Reflect.getOwnPropertyDescriptor(child, 'val');
+        expect(descriptor.get).toBeUndefined();
+        expect(descriptor.set).toBeUndefined();
+        expect(descriptor.configurable).toBeTrue();
+        expect(descriptor.value).toBe('');
+        expect(descriptor.writable).toBeTruthy();
+    });
+
+    it('inheritance object function', () => {
+        function Parent() {
+            this.func = function() {}
+        }
+
+        class Child extends Parent { }
+        const child = new Child();
+        const descriptor = Reflect.getOwnPropertyDescriptor(child, 'func');
+        expect(descriptor.get).toBeUndefined();
+        expect(descriptor.set).toBeUndefined();
+        expect(descriptor.configurable).toBeTrue();
+        expect(descriptor.value).toBeDefined();
+    });
+
+    it('inheritance object function', () => {
+        function Parent() {
+            this.func = function() {}
+        }
+
+        class Child extends Parent { }
+        const child = new Child();
+        const copy = Object.assign({}, child);
+        const descriptor = Reflect.getOwnPropertyDescriptor(copy, 'func');
+        expect(descriptor.enumerable).toBeTrue();
+        expect(descriptor.value).toBeDefined();
+        expect(descriptor.writable).toBeTrue();
+        expect(descriptor.set).toBeUndefined();
+        expect(descriptor.get).toBeUndefined();
+        expect(descriptor.configurable).toBeTrue();
+    });
+
+    it('when not enumerable not assignable', () => {
+        class AClass {
+            method() { return '10'; }
+            get nam1e() {
+                return 'Hojjat';
+            }
+            lname = '12w';
+        }
+        const inst = new AClass();
+        const copy = Object.assign({}, inst);
+        const descName = Reflect.getOwnPropertyDescriptor(AClass.prototype, 'nam1e');
+        const descMethod = Reflect.getOwnPropertyDescriptor(AClass.prototype, 'method');
+        expect(descName.enumerable).toBeFalse();
+        expect(descMethod.enumerable).toBeFalse();
+        expect(inst.method()).toBe('10');
+        expect(inst.nam1e).toBe('Hojjat');
+        expect(inst.lname).toBe('12w');
+        expect(copy.method).toBeUndefined();
+        expect(copy.nam1e).toBeUndefined();
+        expect(copy.lname).toBe('12w');
+    });
+
+    it('when not enumerable not ...', () => {
+        class AClass {
+            method() { return '10'; }
+            get nam1e() {
+                return 'Hojjat';
+            }
+            lname = '12w';
+        }
+        const inst = new AClass();
+        const copy = {...inst};
+        expect(inst.method()).toBe('10');
+        expect(inst.nam1e).toBe('Hojjat');
+        expect(inst.lname).toBe('12w');
+        expect(copy.method).toBeUndefined();
+        expect(copy.nam1e).toBeUndefined();
+        expect(copy.lname).toBe('12w');
+    });
+
+    it('when not enumerable not stringify', () => {
+        class AClass {
+            method() { return '10'; }
+            get nam1e() {
+                return 'Hojjat';
+            }
+            lname = '12w';
+        }
+        const inst = new AClass();
+        const copy = JSON.parse(JSON.stringify(inst));
+        expect(inst.method()).toBe('10');
+        expect(inst.nam1e).toBe('Hojjat');
+        expect(inst.lname).toBe('12w');
+        expect(copy.method).toBeUndefined();
+        expect(copy.nam1e).toBeUndefined();
+        expect(copy.lname).toBe('12w');
+    });
+
+    it('when set prototype', () => {
+        class AClass {
+            method() { return '10'; }
+            get nam1e() {
+                return 'Hojjat';
+            }
+            lname = '12w';
+        }
+        const inst = new AClass();
+        const copy = {};
+        Object.setPrototypeOf(copy, inst);
+        expect(inst.method()).toBe('10');
+        expect(inst.nam1e).toBe('Hojjat');
+        expect(inst.lname).toBe('12w');
+        expect(copy.method).toBeDefined();
+        expect(copy.nam1e).toBeDefined();
+        expect(copy.lname).toBe('12w');
+    });
+
+    it('function props', () => {
+        function AClass(name) {
+            lname = '12w';
+            return lname;
+        }
+        expect(AClass.name).toBe('AClass');
+        expect(AClass.apply({})).toBe('12w');
+        expect(AClass.arguments).toBeNull();
+        expect(AClass.call({}, 10)).toBe('12w');
+    });
+
+    it('change methods to enumerable', () => {
+        class AClass {
+            method1() {
+                return '1025';
+            }
+        }
+        const descMethod1 = Reflect.getOwnPropertyDescriptor(AClass.prototype, 'method1');
+        expect(descMethod1.writable).toBeTrue();
+        expect(descMethod1.enumerable).toBeFalse();
+        expect(descMethod1.set).toBeUndefined();
+        expect(descMethod1.get).toBeUndefined();
+        expect(descMethod1.configurable).toBeTrue();
+        const mainObject = new AClass();
+        const clonedObject = Object.assign({}, mainObject);
+        expect(clonedObject.method1).toBeUndefined();
+        descMethod1.enumerable = true;
+        const afterEnumerable = Object.assign({}, mainObject);
+        expect(afterEnumerable.method1).toBeUndefined();
+        Reflect.defineProperty(AClass.prototype, 'method1', {
+            configurable: true,
+            enumerable: true,
+            writable: true
+        });
+        const afterEnumerable2 = Object.assign({}, mainObject);
+        // expect(afterEnumerable2.method1).toBeDefined();
+    });
 });
