@@ -1,9 +1,15 @@
 {
   "devDependencies": {
+    "@types/jest": "^26.0.14",
+    "@types/node": "^14.11.8",
     "jasmine": "^3.5.0"
   },
   "scripts": {
     "test": "jasmine"
   },
-  "main": "app.js"
+  "main": "app.js",
+  "dependencies": {
+    "@angular/core": "^10.1.5",
+    "rxjs": "^6.6.3"
+  }
 }

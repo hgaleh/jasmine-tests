@@ -1,4 +1,4 @@
-const path = require('path')
+const path = require('path');
 
 describe('decorators readonly', () => {
     it('readonly', () => {
