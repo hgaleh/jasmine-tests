@@ -17,7 +17,7 @@ describe('ES6+ classes: ', function()  {
                 this.firstName = firstName;
                 this.lastName = lastName;
             }
-            
+
             greet() {
                 return `Welcome ${this.firstName} ${this.lastName}`;
             }
@@ -50,14 +50,14 @@ describe('ES6+ classes: ', function()  {
         }
 
         class Customer extends Person {
-            id;
             constructor(firstName, lastName) {
                 super(firstName, lastName);
+                this.id = '';
             }
         }
 
         const c = new Customer('Jogn', 'Doe', 10);
-        
+
         expect(c.hasOwnProperty('firstName')).toBeTrue();
         expect(c.hasOwnProperty('lastName')).toBeTrue();
         expect(c.hasOwnProperty('id')).toBeTrue();
@@ -161,7 +161,7 @@ describe('ES6+ classes: ', function()  {
                 super()
             }
         }
-        
+
         const c = new Child();
     });
 
