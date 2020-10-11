@@ -44,4 +44,11 @@ describe('mock static class', () => {
             expect(RealClass.staticMethod()).toBe('Hojjat is real');
         }
     });
+
+    it('mock static method', () => {
+        spyOn(RealClass, 'staticMethod').and.returnValue('Name is SS');
+        const userClass = new UserClass();
+        expect(userClass.getStaticMethod()).toBe('Name is SS');
+        expect(RealClass.staticMethod).toHaveBeenCalled();
+    });
 });

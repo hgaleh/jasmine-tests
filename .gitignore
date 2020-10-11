@@ -47,3 +47,5 @@ Thumbs.db
 spec/debug.log
 yarn.lock
 debug.log
+
+spec/ts/*.spec.js
